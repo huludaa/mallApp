@@ -1,0 +1,93 @@
+@import "./base.less";
+// 定义主题色变量
+@primary: #1baeae; // 主色调
+@primary-light: #1baeae; // 浅色主调
+@primary-dark: #1baeae; // 深色主调
+
+// 定义文字颜色变量
+@text-color: #333; // 主要文字颜色
+@text-color-light: #666; // 次要文字颜色
+@text-color-lighter: #999; // 辅助文字颜色
+
+// 定义背景颜色变量
+@bg-color: #f5f5f5; // 主要背景色
+@bg-color-light: #fafafa; // 浅色背景
+
+// 定义边框颜色变量
+@border-color: #eee; // 边框颜色
+
+// 定义常用的样式混入
+// 弹性布局混入
+.fj(@type: space-between) {
+  display: flex;
+  justify-content: @type;
+  align-items: center;
+}
+
+// 宽高混入
+.wh(@w, @h) {
+  width: @w;
+  height: @h;
+}
+
+// 宽高和溢出控制混入
+.sc(@w, @h) {
+  width: @w;
+  height: @h;
+  overflow: hidden;
+}
+
+// 文字颜色混入
+.fc(@c) {
+  color: @c;
+}
+
+// 字体大小混入
+.fs(@s) {
+  font-size: @s;
+}
+
+// 背景颜色混入
+.bg(@c) {
+  background-color: @c;
+}
+
+// 边框混入
+.border(@c) {
+  border: 1px solid @c;
+}
+
+// 圆角混入
+.border-radius(@r) {
+  border-radius: @r;
+}
+
+// 单行文本溢出省略混入
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 多行文本溢出省略混入
+.multi-ellipsis(@n) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @n;
+  overflow: hidden;
+}
+
+// 内容的宽度限制和居中对齐
+.wrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+// 盒模型计算方式
+.boxSizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
