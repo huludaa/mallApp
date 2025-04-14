@@ -30,6 +30,10 @@
         <i class="iconfont icon-denglu"></i>
       </router-link>
     </header>
+
+    <!-- 底部导航栏 -->
+    <navBar />
+
     <!-- 轮播图 -->
     <swiper :list="state.swiperList"></swiper>
 
@@ -115,6 +119,7 @@ import { reactive, onMounted, nextTick } from "vue";
 import swiper from "@/components/Swiper.vue";
 import { getHome } from "@/service/home";
 import { getLocal } from "@/common/js/utils";
+import navBar from "@/components/NavBar.vue";
 import { showLoadingToast, closeToast, showToast } from "vant";
 import { useRouter } from "vue-router";
 
