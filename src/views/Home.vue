@@ -52,7 +52,7 @@
             class="good-item"
             v-for="item in state.newGoodses"
             :key="item.goodsId"
-            @click="goToDetail(item)"
+            @click="goToDetail(item.goodsId)"
           >
             <img :src="item.goodsCoverImg" />
             <div class="goods-desc">
@@ -73,6 +73,7 @@
             class="good-item"
             v-for="item in state.hotGoodses"
             :key="item.goodsId"
+            @click="goToDetail(item.goodsId)"
           >
             <img :src="item.goodsCoverImg" />
             <div class="goods-desc">
@@ -93,6 +94,7 @@
             class="good-item"
             v-for="item in state.recommendGoodses"
             :key="item.goodsId"
+            @click="goToDetail(item.goodsId)"
           >
             <img :src="item.goodsCoverImg" />
             <div class="goods-desc">
@@ -112,12 +114,15 @@
 import { reactive, onMounted, nextTick } from "vue";
 import swiper from "@/components/Swiper.vue";
 import { getHome } from "@/service/home";
+import { getLocal } from "@/common/js/utils";
 import { showLoadingToast, closeToast, showToast } from "vant";
+import { useRouter } from "vue-router";
 
 const state = reactive({
-  isLogin: true, //是否登录
+  isLogin: false, //是否登录
   headerScroll: false, //滚动透明判断
   swiperList: [], //轮播图列表
+  loading: true, // 加载状态，true为显示骨架屏，flase为显示真实内容
   newGoodses: [], //新品列表
   hotGoodses: [], //热门商品列表
   recommendGoodses: [], //推荐商品
@@ -185,6 +190,10 @@ const state = reactive({
 });
 
 onMounted(async () => {
+  const token = getLocal("token");
+  if (token) {
+    state.isLogin = true;
+  }
   // 显示加载提示
   showLoadingToast({
     message: "加载中...",
@@ -197,9 +206,9 @@ onMounted(async () => {
   state.newGoodses = res.data.newGoodses;
   state.hotGoodses = res.data.hotGoodses;
   state.recommendGoodses = res.data.recommendGoodses;
-  console.log(res);
   state.loading = false; // 显示真实内容
   closeToast(); // 关闭加载提示
+
   // 滚动监听
   nextTick(() => {
     window.addEventListener("scroll", () => {
@@ -213,6 +222,13 @@ onMounted(async () => {
     });
   });
 });
+
+//路由实例化
+const router = useRouter();
+//TODO：商品详情
+const goToDetail = (goodsId) => {
+  router.push({ path: `/product/${goodsId}` });
+};
 </script>
 
 <style lang="less" scoped>

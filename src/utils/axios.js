@@ -1,5 +1,5 @@
 import axios from "axios";
-import { showToast, showFailToast } from "vant";
+import { showFailToast } from "vant";
 import { setLocal } from "@/common/js/utils";
 import router from "@/router/index";
 
@@ -14,6 +14,7 @@ axios.defaults.headers.post["Content-Type"] = "application/json"; // 设置post�
 axios.interceptors.response.use(
   //成功时的处理
   (res) => {
+    console.log("res:", res);
     //如果返回的数据不是对象，说明服务器异常
     if (typeof res.data !== "object") {
       showFailToast("服务器异常!");

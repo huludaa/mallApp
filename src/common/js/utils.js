@@ -8,7 +8,12 @@ export function setLocal(key, val) {
   return localStorage.setItem(key, val);
 }
 
-//删除本地存储的数据
-export function removeLocal(key) {
-  return localStorage.removeItem(key);
-}
+// 移除本地存储
+export const removeLocal = (key) => {
+  localStorage.removeItem(key);
+};
+
+// 清空本地存储
+export const clearLocal = () => {
+  localStorage.clear();
+};

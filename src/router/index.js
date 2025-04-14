@@ -15,6 +15,18 @@ const routes = [
     component: () => import("@/views/home.vue"),
   },
   {
+    //登录路由
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/login.vue"),
+  },
+  {
+    //注册路由
+    path: "/register",
+    name: "Register",
+    component: () => import("@/views/register.vue"),
+  },
+  {
     //分类路由
     path: "/category",
     name: "Category",
@@ -36,7 +48,7 @@ const routes = [
 
 //创建路由实例
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
